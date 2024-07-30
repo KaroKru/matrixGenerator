@@ -35,10 +35,10 @@ jobs:
 
     - name: Capture coverage info
       run: |
-        cd build
-        lcov --capture --directory . --output-file coverage.info
-        lcov --remove coverage.info '/usr/*' --output-file coverage_filtered.info
-        genhtml coverage_filtered.info --output-directory coverage_report
+        msys2.cmd bash -lc "cd build && lcov --capture --directory . --output-file coverage.info"
+        msys2.cmd bash -lc "cd build && lcov --remove coverage.info '/usr/*' --output-file coverage_filtered.info"
+        msys2.cmd bash -lc "cd build && genhtml coverage_filtered.info --output-directory coverage_report"
+
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v2
