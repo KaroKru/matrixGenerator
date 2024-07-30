@@ -35,9 +35,9 @@ jobs:
 
     - name: Capture coverage info
       run: |
-        msys2.cmd bash -lc "cd build && lcov --capture --directory . --output-file coverage.info"
-        msys2.cmd bash -lc "cd build && lcov --remove coverage.info '/usr/*' --output-file coverage_filtered.info"
-        msys2.cmd bash -lc "cd build && genhtml coverage_filtered.info --output-directory coverage_report"
+        msys2.cmd lcov --capture --directory build --output-file build/coverage.info
+        msys2.cmd lcov --remove build/coverage.info '/usr/*' --output-file build/coverage_filtered.info
+        msys2.cmd genhtml build/coverage_filtered.info --output-directory build/coverage_report
 
 
     - name: Upload coverage report
