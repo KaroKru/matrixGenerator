@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="9" failures="0" disabled="0" errors="0" time="0.394" timestamp="2024-07-31T00:47:36.971" name="AllTests">
+  <testsuite name="TimeMeasurementsTest" tests="2" failures="0" disabled="0" skipped="0" errors="0" time="0.169" timestamp="2024-07-31T00:47:36.972">
+    <testcase name="MeasureTimeTest" status="run" result="completed" time="0.105" timestamp="2024-07-31T00:47:36.972" classname="TimeMeasurementsTest" />
+    <testcase name="TimeValueTest" status="run" result="completed" time="0.063" timestamp="2024-07-31T00:47:37.077" classname="TimeMeasurementsTest" />
+  </testsuite>
+  <testsuite name="ReadWindowsSizeTest" tests="5" failures="0" disabled="0" skipped="0" errors="0" time="0.004" timestamp="2024-07-31T00:47:37.141">
+    <testcase name="CheckSavedDataTest" status="run" result="completed" time="0.002" timestamp="2024-07-31T00:47:37.141" classname="ReadWindowsSizeTest" />
+    <testcase name="CheckWindowsSizeTest" status="run" result="completed" time="0" timestamp="2024-07-31T00:47:37.143" classname="ReadWindowsSizeTest" />
+    <testcase name="CheckColumnValueTest" status="run" result="completed" time="0" timestamp="2024-07-31T00:47:37.143" classname="ReadWindowsSizeTest" />
+    <testcase name="CheckRowValueTest" status="run" result="completed" time="0" timestamp="2024-07-31T00:47:37.143" classname="ReadWindowsSizeTest" />
+    <testcase name="CheckPossibilityToSaveWindowsSizeTest" status="run" result="completed" time="0.002" timestamp="2024-07-31T00:47:37.143" classname="ReadWindowsSizeTest" />
+  </testsuite>
+  <testsuite name="RandomGeneratorTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0" timestamp="2024-07-31T00:47:37.145">
+    <testcase name="GenerateRandomNumbersTest" status="run" result="completed" time="0" timestamp="2024-07-31T00:47:37.145" classname="RandomGeneratorTest" />
+  </testsuite>
+  <testsuite name="PrintRandomNumbersTest" tests="1" failures="0" disabled="0" skipped="0" errors="0" time="0.22" timestamp="2024-07-31T00:47:37.145">
+    <testcase name="PrintNumbersTest" status="run" result="completed" time="0.22" timestamp="2024-07-31T00:47:37.145" classname="PrintRandomNumbersTest" />
+  </testsuite>
+</testsuites>
