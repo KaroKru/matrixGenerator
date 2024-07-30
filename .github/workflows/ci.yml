@@ -14,8 +14,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up CMake
-      uses: lukka/get-cmake@v2
+    - name: Install CMake
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake
 
     - name: Set up MSYS2
       uses: msys2/setup-msys2@v2
