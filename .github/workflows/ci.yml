@@ -8,16 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
-
-    - name: Install CMake
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
 
     - name: Set up MSYS2
       uses: msys2/setup-msys2@v2
@@ -28,6 +23,7 @@ jobs:
           mingw-w64-x86_64-cmake
           mingw-w64-x86_64-gcov
           mingw-w64-x86_64-lcov
+        msystem: MINGW64
 
     - name: Configure CMake
       run: cmake -G "MSYS Makefiles" -B build
