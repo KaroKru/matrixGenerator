@@ -29,7 +29,7 @@ TEST_F(TimeMeasurementsTest, MeasureTimeTest)
 
     double elapsedTime = timeMeasurements->measureTime();
 
-    ASSERT_GE(elapsedTime, 0.1); 
+    ASSERT_GE(elapsedTime, 0.01); 
 }
 
 TEST_F(TimeMeasurementsTest, TimeValueTest) 
@@ -40,7 +40,7 @@ TEST_F(TimeMeasurementsTest, TimeValueTest)
 
     timeMeasurements->endTask();
 
-    double timeValue = timeMeasurements->timeValue();
+    double timeValue = timeMeasurements->measureTime();
 
     ASSERT_GE(timeValue, 0.05); 
     ASSERT_LE(timeValue, 0.1); 

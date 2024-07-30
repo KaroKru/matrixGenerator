@@ -1,4 +1,7 @@
 #include "PrintRandomNumbers.hpp"
+#include <iomanip>
+#include <fstream>
+#include <stdexcept>
 
 PrintRandomNumbers::PrintRandomNumbers(RandomGeneratorAbstract& random) : randomGenerator{random}
 {}
