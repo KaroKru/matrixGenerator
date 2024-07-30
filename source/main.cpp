@@ -2,13 +2,10 @@
 #include "RandomGenerator.hpp"
 #include "PrintRandomNumbers.hpp"
 #include "TimeMeasurements.hpp"
-#include "TimeConversion.hpp"
 
 int main(int argc, char* argv[])
 {
     TimeMeasurements time;
-    TimeConversion conversion{&time};
-
     time.runTask();
 
     ReadWindowsSize windowsSize;
@@ -42,16 +39,9 @@ int main(int argc, char* argv[])
 
     std::cout << std::endl;
 
-    double timeValue = time.measureTime();
+    time.measureTime();
 
-    if (timeValue < 10.0)
-    {
-        std::cout << "Total time: " << timeValue << " seconds" <<  std::endl;
-    }
-    else 
-    {
-        conversion.getTime();
-    }
+    time.getTime();
 
     return 0;
 }

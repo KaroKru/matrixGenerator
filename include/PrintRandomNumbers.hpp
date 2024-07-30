@@ -2,10 +2,7 @@
 #define PRINTRANDOMNUMBERS_HPP
 
 #include <iostream>
-#include <iomanip>
 #include <vector>
-#include <fstream>
-#include <stdexcept>
 #include "RandomGenerator.hpp"
 
 
@@ -23,4 +20,4 @@ class PrintRandomNumbers
     RandomGeneratorAbstract& randomGenerator;
 };
 
-#endif
+#endif //PRINTRANDOMNUMBERS_HPP

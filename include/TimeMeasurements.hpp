@@ -13,12 +13,12 @@ class TimeMeasurements
     void runTask();
     void endTask();
     double measureTime();
-    double timeValue();
+    void getTime();
 
     private:
     std::chrono::time_point<std::chrono::high_resolution_clock> startTime;
     std::chrono::time_point<std::chrono::high_resolution_clock> endTime;
-    std::chrono::duration<double> totalTime;
+    std::chrono::duration<double> totalTime = std::chrono::duration<double>::zero(); 
 };
 
-#endif
+#endif //TIMEMEASUREMETS_HPP

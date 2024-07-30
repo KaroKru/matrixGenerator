@@ -6,18 +6,18 @@
 
 class ReadWindowsSize
 {
-    public:
+public:
     ReadWindowsSize() = default;
     ~ReadWindowsSize() = default;
 
     void getWindowsSize();
-    int getColumnNumbers();
-    int getRowNumbers();
-    void saveWindowsSize();
+    int getColumnNumbers() const;
+    int getRowNumbers() const;
+    void saveWindowsSize() const;
 
-    private:
+private:
     int columns{0};
     int rows{0};
 };
 
-#endif
+#endif // READWINDOWSSIZE_HPP
