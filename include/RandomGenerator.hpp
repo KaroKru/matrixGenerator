@@ -14,4 +14,4 @@ class RandomGenerator : public RandomGeneratorAbstract
     int randomNumber() override;
 };
 
-#endif
+#endif // RANDOMGENERATOR_HPP

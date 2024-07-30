@@ -15,4 +15,4 @@ class RandomGeneratorAbstract
     unsigned int minimumValue{0};
 };
 
-#endif
+#endif // RANDOMGENERATORABSTRACT_HPP
