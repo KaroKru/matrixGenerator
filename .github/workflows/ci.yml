@@ -25,22 +25,11 @@ jobs:
         msystem: MINGW64
 
     - name: Configure CMake
-      run: msys2.cmd -c "cmake -G 'Unix Makefiles' -B build"
+      run: cmake -G "Unix Makefiles" -B build
 
     - name: Build
-      run: msys2.cmd -c "cmake --build build"
+      run: cmake --build build
 
     - name: Run tests
-      run: msys2.cmd -c "ctest --test-dir build"
+      run: ctest --test-dir build
 
-    - name: Capture coverage info
-      run: |
-        msys2.cmd -c "lcov --capture --directory build --output-file build/coverage.info"
-        msys2.cmd -c "lcov --remove build/coverage.info '/usr/*' --output-file build/coverage_filtered.info"
-        msys2.cmd -c "genhtml build/coverage_filtered.info --output-directory build/coverage_report"
-
-    - name: Upload coverage report
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage-report
-        path: build/coverage_report
