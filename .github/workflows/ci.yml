@@ -23,7 +23,7 @@ jobs:
         choco install lcov
 
     - name: Configure CMake
-      run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS="/DTESTING" -DCMAKE_C_FLAGS="/DTESTING"
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Debug -G "Visual Studio 16 2019" -A x64
 
     - name: Build
       run: cmake --build build --config Debug
@@ -51,6 +51,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         path-to-lcov: build/coverage.info
-
-
 
