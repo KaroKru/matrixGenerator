@@ -24,6 +24,16 @@ int main(int argc, char* argv[])
 
     RandomGenerator random;
     PrintRandomNumbers print{random};
+
+    try
+    {
+        print.readRandomNumbers();
+    }
+    catch (const std::runtime_error& e)
+    {
+        std::cout << "Problem: " << e.what() << std::endl;
+    }
+
     print.printChoosenNumbers(columnsNumber);
 
     try

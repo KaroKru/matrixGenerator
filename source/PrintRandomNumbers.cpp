@@ -8,11 +8,9 @@ PrintRandomNumbers::PrintRandomNumbers(RandomGeneratorAbstract& random) : random
 
 void PrintRandomNumbers::printChoosenNumbers(unsigned int columns)
 {
-    int maximumCounterValue{5000};
+    randomGenerator.initialValues(minVal, maxVal);
 
-    randomGenerator.initialValues(0, 10);
-
-    for (unsigned int counter = 0; counter < maximumCounterValue; counter++)
+    for (unsigned int counter = 0; counter < nrSamples; counter++)
     {
         randomData.push_back(randomGenerator.randomNumber());
 
@@ -41,5 +39,30 @@ void PrintRandomNumbers::saveChoosenNumbers()
         }
 
         randomNumbers.close();
+    }
+}
+
+void PrintRandomNumbers::readRandomNumbers()
+{
+    std::cout << "b";
+    std::ifstream readData("../source/config/values.txt");
+
+    std::cout << "a ";
+
+    if (!readData.is_open())
+    {
+        throw std::runtime_error("Problem with opening the config file");
+    }
+    else
+    {
+        readData >> nrSamples >> minVal >> maxVal;
+        std::cout << nrSamples << " " << minVal << " " << maxVal << std::endl;
+
+        if (readData.fail()) 
+        {
+            throw std::runtime_error("Error reading values from config file");
+        }
+
+         readData.close();
     }
 }
