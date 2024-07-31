@@ -25,22 +25,28 @@ jobs:
         msystem: MINGW64
 
     - name: Configure CMake
+      shell: msys2 {0}
       run: cmake -G "Unix Makefiles" -B build -DCMAKE_BUILD_TYPE=Debug -DENABLE_COVERAGE=ON
 
     - name: Build
+      shell: msys2 {0}
       run: cmake --build build
 
     - name: Run tests
+      shell: msys2 {0}
       run: ctest --test-dir build
 
     - name: Run lcov to capture coverage info
+      shell: msys2 {0}
       run: |
         lcov --directory build --capture --output-file coverage.info
 
     - name: Filter out system and test code
+      shell: msys2 {0}
       run: lcov --remove coverage.info '/usr/*' '*/tests/*' --output-file coverage.info
 
     - name: Generate coverage report
+      shell: msys2 {0}
       run: lcov --list coverage.info
 
     - name: Upload coverage report
