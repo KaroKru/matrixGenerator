@@ -25,8 +25,10 @@ class PrintRandomNumbersTest : public ::testing::Test
 TEST_F(PrintRandomNumbersTest, PrintNumbersTest)
 {
     unsigned int columnsNumber = 100;
-    printRandomNumbers->printChoosenNumbers(columnsNumber);
 
+    printRandomNumbers->readRandomNumbers();
+    printRandomNumbers->printChoosenNumbers(columnsNumber);
+    
     ASSERT_NO_THROW(printRandomNumbers->saveChoosenNumbers());
 
     std::ifstream randomNumbersFile("randomData.txt");

@@ -1,0 +1,2 @@
+C:/msys64/mingw64/bin/ar.exe qc libmatrixGenerator.a CMakeFiles/matrixGenerator.dir/source/PrintRandomNumbers.cpp.obj CMakeFiles/matrixGenerator.dir/source/RandomGenerator.cpp.obj CMakeFiles/matrixGenerator.dir/source/ReadWindowsSize.cpp.obj CMakeFiles/matrixGenerator.dir/source/TimeMeasurements.cpp.obj
+C:/msys64/mingw64/bin/ranlib.exe libmatrixGenerator.a

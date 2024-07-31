@@ -13,11 +13,15 @@ class PrintRandomNumbers
     ~PrintRandomNumbers() = default;
 
     void printChoosenNumbers(unsigned int columns);
+    void readRandomNumbers();
     void saveChoosenNumbers();
 
     private:
     std::vector<int> randomData;
     RandomGeneratorAbstract& randomGenerator;
+    int minVal;
+    int maxVal;
+    int nrSamples;
 };
 
 #endif //PRINTRANDOMNUMBERS_HPP
