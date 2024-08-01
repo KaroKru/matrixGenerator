@@ -34,4 +34,4 @@ ctest -V
 ```
 
 ## Result of usage
-![Matrix Effect](../photo/result.png)
+![Matrix Effect](/photo/result.png)
