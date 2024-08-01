@@ -7,6 +7,7 @@ Matrix Generator is a project that displays changing values on the console from 
 - Configurable settings for value range and update speed.
 
 ## Requirements
+Windows
 C++ compiler (e.g., GCC)
 CMake 3.10 or higher
 
@@ -17,7 +18,7 @@ Second value is the min value of range
 Third value is the max value of range. 
 
 ## How to use
-Navigate to the proejct directory and build the project using CMake
+Navigate to the proejct directory and build the project using CMake:
 
 ```
 cd matrixGenerator
@@ -28,7 +29,7 @@ make
 ./run.exe
 ```
 
-How to run tests
+How to run tests:
 ```
 ctest -V
 ```
