@@ -11,7 +11,7 @@ Windows
 C++ compiler (e.g., GCC)
 CMake 3.10 or higher
 
-## How to displayed values
+## How to display values
 Modified values in source/config/values.txt file. 
 First value is the number of samples
 Second value is the min value of range
