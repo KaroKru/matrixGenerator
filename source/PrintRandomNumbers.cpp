@@ -44,10 +44,7 @@ void PrintRandomNumbers::saveChoosenNumbers()
 
 void PrintRandomNumbers::readRandomNumbers()
 {
-    std::cout << "b";
     std::ifstream readData("../source/config/values.txt");
-
-    std::cout << "a ";
 
     if (!readData.is_open())
     {
