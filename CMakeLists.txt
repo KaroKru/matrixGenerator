@@ -5,26 +5,21 @@ project(matrixGenerator)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
-    set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+option(ENABLE_CODE_COVERAGE "Enable code coverage" ON)
+
+option(ENABLE_CLANG_TIDY "Enable clang-tidy" ON)
+
+if (ENABLE_CLANG_TIDY)
+    if (CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        find_program(CLANG_TIDY_EXE NAMES clang-tidy)
+        if(CLANG_TIDY_EXE)
+            set(CMAKE_CXX_CLANG_TIDY "${CLANG_TIDY_EXE};-header-filter=${CMAKE_SOURCE_DIR}/source/.*;-extra-arg=-I${CMAKE_SOURCE_DIR}/source/include")
+        endif()
+    endif()
 endif()
 
-include_directories(include)
-
-add_library(matrixGenerator
-    source/PrintRandomNumbers.cpp
-    source/RandomGenerator.cpp
-    source/ReadWindowsSize.cpp
-    source/TimeMeasurements.cpp
-)
-
-add_executable(run WIN32
-    source/main.cpp
-)
-
-target_link_libraries(run matrixGenerator)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -34,15 +29,52 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
+if(ENABLE_CLANG_TIDY AND CLANG_TIDY_EXE)
+    set_target_properties(gtest PROPERTIES CXX_CLANG_TIDY "")
+    set_target_properties(gmock PROPERTIES CXX_CLANG_TIDY "")
+    set_target_properties(gmock_main PROPERTIES CXX_CLANG_TIDY "")
+    set_target_properties(gtest_main PROPERTIES CXX_CLANG_TIDY "")
+endif()
+
+add_subdirectory(source)
+add_subdirectory(tests)
+
 enable_testing()
 
-add_executable(matrixGeneratorTests
-    tests/PrintRandomNumbersTest.cpp
-    tests/RandomGeneratorTest.cpp
-    tests/ReadWindowsSizeTest.cpp 
-    tests/TimeMeasurementsTest.cpp
+file(GLOB_RECURSE ALL_SOURCE_FILES
+    ${CMAKE_SOURCE_DIR}/source/src/*.cpp
+    ${CMAKE_SOURCE_DIR}/source/include/*.hpp
+    ${CMAKE_SOURCE_DIR}/tests/src/*.cpp
+    ${CMAKE_SOURCE_DIR}/tests/include/*.hpp
 )
 
-target_link_libraries(matrixGeneratorTests gtest gmock gtest_main matrixGenerator)
+add_custom_target(format
+    COMMAND clang-format
+    -i
+    -style=file
+    ${ALL_SOURCE_FILES}
+    COMMENT "Running clang-format on source files"
+)
 
-add_test(NAME MatrixGeneratorTests COMMAND matrixGeneratorTests --gtest_output=xml:report.xml)
+if(ENABLE_CODE_COVERAGE)
+    if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage -O0 -g")
+        set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --coverage")
+        set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} --coverage")
+    endif()
+
+    find_program(LCOV_EXEC lcov)
+    find_program(GENHTML_EXEC genhtml)
+
+    if(LCOV_EXEC AND GENHTML_EXEC)
+        add_custom_target(coverage
+            COMMAND ${LCOV_EXEC} --capture --directory ${CMAKE_BINARY_DIR} --output-file coverage.info
+            COMMAND ${LCOV_EXEC} --remove coverage.info '/usr/*' '${CMAKE_BINARY_DIR}/*' --output-file coverage.info
+            COMMAND ${GENHTML_EXEC} -o coverage coverage.info
+            COMMENT "Generating coverage report"
+            VERBATIM
+        )
+    else()
+        message(WARNING "lcov or genhtml not found! Cannot generate coverage report.")
+    endif()
+endif()
