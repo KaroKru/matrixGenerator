@@ -26,7 +26,7 @@ TEST_F(PrintRandomNumbersTest, PrintNumbersTest)
 {
     unsigned int columnsNumber = 100;
 
-    printRandomNumbers->readRandomNumbers();
+    printRandomNumbers->readRandomNumbers("../../source/src/config/values.txt");
     printRandomNumbers->printChoosenNumbers(columnsNumber);
     
     ASSERT_NO_THROW(printRandomNumbers->saveChoosenNumbers());

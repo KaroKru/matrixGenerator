@@ -13,7 +13,7 @@ class PrintRandomNumbers
     ~PrintRandomNumbers() = default;
 
     void printChoosenNumbers(unsigned int columns);
-    void readRandomNumbers();
+    void readRandomNumbers(const std::string& filePath);
     void saveChoosenNumbers();
 
     private:
