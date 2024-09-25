@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
 
     try
     {
-        print.readRandomNumbers();
+        print.readRandomNumbers("../source/src/config/values.txt");
     }
     catch (const std::runtime_error& e)
     {

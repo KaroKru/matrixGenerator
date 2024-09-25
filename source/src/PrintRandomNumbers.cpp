@@ -42,9 +42,9 @@ void PrintRandomNumbers::saveChoosenNumbers()
     }
 }
 
-void PrintRandomNumbers::readRandomNumbers()
+void PrintRandomNumbers::readRandomNumbers(const std::string& filePath)
 {
-    std::ifstream readData("../source/src/config/values.txt");
+    std::ifstream readData(filePath);
 
     if (!readData.is_open())
     {
